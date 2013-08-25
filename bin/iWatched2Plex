@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-require '../lib/iwatched2plex'
-require '../lib/iwatched2plex/cli'
+require File.expand_path("../../lib/iwatched2plex", __FILE__)
+require File.expand_path("../../lib/iwatched2plex/cli", __FILE__)
 
 IWatched2Plex::CLI.start;

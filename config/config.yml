@@ -1,0 +1,10 @@
+devlopment: &non_production_settings
+  :bla:
+    :blabla: "foo"
+
+test:
+  <<: *non_production_settings
+
+production:
+  :bla:
+    :blabla: "foofoo"

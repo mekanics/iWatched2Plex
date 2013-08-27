@@ -4,7 +4,7 @@ module IWatched2Plex
 
 	class Version
 
-		MAJOR, MINOR, PATCH = 0, 0, 1a
+		MAJOR, MINOR, PATCH = 0, 0, 1
 
 		def self.major
 			MAJOR

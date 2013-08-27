@@ -14,6 +14,9 @@ module IWatched2Plex
 		desc "sync", "sync the Plex library with the iTunes library"
 		def sync
 
+			itunes_lib_path = File.expand_path("~/Music/iTunes")
+			puts itunes_lib_path
+
 			puts @APP_CONFIG
 
 

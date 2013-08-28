@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module IWatched2Plex
 
 	class CLI < Thor
@@ -14,12 +16,10 @@ module IWatched2Plex
 		desc "sync", "sync the Plex library with the iTunes library"
 		def sync
 
-			itunes_lib_path = File.expand_path("~/Music/iTunes")
-			puts itunes_lib_path
+			itunesLibPath = File.expand_path("~/Music/iTunes")
+			itunesLib = Itunes.new(itunesLibPath)
 
-			puts @APP_CONFIG
-
-
+			puts itunesLib.getWatchedList.count
 		end
 
 		map "-v" => :version

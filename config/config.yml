@@ -1,10 +1,18 @@
 devlopment: &non_production_settings
-  :bla:
-    :blabla: "foo"
+  :itunes:
+    :path: "~/Music/iTunes"
+
+  :plex:
+    :host: "127.0.0.1"
+    :port: 32400
 
 test:
   <<: *non_production_settings
 
 production:
-  :bla:
-    :blabla: "foofoo"
+  :itunes:
+    :path: "~/Music/iTunes"
+
+  :plex:
+    :host: "127.0.0.1"
+    :port: 32400

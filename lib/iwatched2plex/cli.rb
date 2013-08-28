@@ -1,5 +1,7 @@
 #encoding: utf-8
 
+require 'thor'
+
 module IWatched2Plex
 
 	class CLI < Thor
@@ -20,6 +22,8 @@ module IWatched2Plex
 			itunesLib = Itunes.new(itunesLibPath)
 
 			puts itunesLib.getWatchedList.count
+
+			plex = Plex.new(@APP_CONFIG[:plex][:host], @APP_CONFIG[:plex][:port])
 		end
 
 		map "-v" => :version

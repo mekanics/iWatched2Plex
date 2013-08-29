@@ -12,18 +12,21 @@ module IWatched2Plex
 		method_option :host, :type => :string, :aliases => ["-h"], :desc => "Your Plex host [localhost]"
 		method_option :port, :type => :numeric, :aliases => ["-p"], :desc => "The Port of your Plex Server [32400]"
 		def sync
-			itunesLibPath = options.itunes.nil? ? File.expand_path("~/Music/iTunes") : File.expand_path(options.itunes)
-			plexHost = options.host.nil? ? "localhost" : options.host
-			plexPort = options.port.nil? ? 32400 : options.port
+			itunes_lib_path = options.itunes.nil? ? File.expand_path("~/Music/iTunes") : File.expand_path(options.itunes)
+			plex_host = options.host.nil? ? "localhost" : options.host
+			plex_port = options.port.nil? ? 32400 : options.port
+
+			puts "#{itunes_lib_path} --> #{plex_host}:#{plex_port}"
+
+			itunesLib = Itunes.new(itunes_lib_path)
+
+			movies = itunesLib.getWatchedMovies
+			movie_names = movies.map {|movie| movie.name}
+			movie_names.sort_by!{ |m| m.downcase }
 
 
-
-			itunesLib = Itunes.new(itunesLibPath)
-
-			puts "#{itunesLib.getWatchedMovies.count} watched movies/tv shows found"
-
-			plex = AJPlex.new(@APP_CONFIG[:plex][:host], @APP_CONFIG[:plex][:port])
-			plex.foo
+			plex = AJPlex.new(plex_host, plex_port)
+			plex.setMoviesUnwatched(movie_names)
 		end
 
 		map "-v" => :version

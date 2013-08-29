@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require 'itunes/library'
+require 'colorize'
 
 module VideoType
   MOVIE = 1
@@ -33,7 +34,7 @@ module IWatched2Plex
 		def getWatched(type)
 
 			unless libExists?
-				puts "Library path '#{@itunesLibPath}' could not be found."
+				puts "Library path '#{@itunesLibPath}' could not be found.".red
 				exit
 			end
 

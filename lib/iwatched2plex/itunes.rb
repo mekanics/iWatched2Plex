@@ -14,24 +14,28 @@ module IWatched2Plex
 		def initialize(itunesLibPath)
 
 			@itunesLibPath = itunesLibPath
+
 			@library = ITunes::Library.load(File.join(@itunesLibPath, "iTunes Library.xml"))
 
 		end
 
-
-		def getWatchedList
-
-			list = getWatched(VideoType::MOVIE)
-
-			list.concat(getWatched(VideoType::TVSHOW))
-
-			list
-
+		def getWatchedMovies
+			getWatched(VideoType::MOVIE)
 		end
+
+		def getWatchedShows
+			getWatched(VideoType::TVSHOW)
+		end
+
 
 		private
 
 		def getWatched(type)
+
+			unless libExists?
+				puts "Library path '#{@itunesLibPath}' could not be found."
+				exit
+			end
 
 			list = []
 
@@ -46,6 +50,10 @@ module IWatched2Plex
 
 			list
 
+		end
+
+		def libExists?
+			File.directory?(@itunesLibPath)
 		end
 
 	end

@@ -7,23 +7,23 @@ module IWatched2Plex
 	class CLI < Thor
 		default_task :sync
 
-		attr_accessor :APP_CONFIG
-
-		def initialize(*args)
-			super
-			appConfig = Config.new(CONFIG_FILE)
-			@APP_CONFIG = appConfig.read
-		end
-
 		desc "sync", "sync the Plex library with the iTunes library"
+		method_option :itunes, :type => :string, :aliases => ["-i"], :desc => "The path to your iTunes library [~/Music/iTunes]"
+		method_option :host, :type => :string, :aliases => ["-h"], :desc => "Your Plex host [localhost]"
+		method_option :port, :type => :numeric, :aliases => ["-p"], :desc => "The Port of your Plex Server [32400]"
 		def sync
+			itunesLibPath = options.itunes.nil? ? File.expand_path("~/Music/iTunes") : File.expand_path(options.itunes)
+			plexHost = options.host.nil? ? "localhost" : options.host
+			plexPort = options.port.nil? ? 32400 : options.port
 
-			itunesLibPath = File.expand_path("~/Music/iTunes")
+
+
 			itunesLib = Itunes.new(itunesLibPath)
 
-			puts itunesLib.getWatchedList.count
+			puts "#{itunesLib.getWatchedMovies.count} watched movies/tv shows found"
 
-			plex = Plex.new(@APP_CONFIG[:plex][:host], @APP_CONFIG[:plex][:port])
+			plex = AJPlex.new(@APP_CONFIG[:plex][:host], @APP_CONFIG[:plex][:port])
+			plex.foo
 		end
 
 		map "-v" => :version

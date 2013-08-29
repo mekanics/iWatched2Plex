@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'thor', "~> 0.18.1"
+gem 'colorize' , "~> 0.5.6"
 
 gem "itunes-library", "~> 0.1.1"
 

@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require 'plex-ruby'
+require 'colorize'
 
 module IWatched2Plex
 
@@ -15,7 +16,7 @@ module IWatched2Plex
 
 		end
 
-		def foo
+		def setMoviesUnwatched(movie_names)
 			library = @plexServer.library
 			sections = library.sections
 			unwatched = []
@@ -24,12 +25,21 @@ module IWatched2Plex
 				puts "section #{section.type}"
 
 				if section.type == "movie" then
-					next
-					section.unwatched.each do |x|
-						puts x.title
+
+					movie_names.each do |movie_name|
+						pattern = Regexp.new movie_name
+						movie = section.all.detect { |m| m.title =~ pattern}
+
+						unless movie.nil? then
+							puts "'#{movie_name}' found".green
+						else
+							puts "'#{movie_name}' could not be found".red
+						end
 					end
 
+
 				elsif section.type == "show" then
+					next
 					shows = section.all
 
 

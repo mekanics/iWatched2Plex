@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require 'thor'
+require 'colorize'
 
 module IWatched2Plex
 
@@ -16,7 +17,7 @@ module IWatched2Plex
 			plex_host = options.host
 			plex_port = options.port
 
-			puts "#{itunes_lib_path} --> #{plex_host}:#{plex_port}"
+			puts "#{itunes_lib_path} --> #{plex_host}:#{plex_port}".yellow
 
 			itunesLib = Itunes.new(itunes_lib_path)
 

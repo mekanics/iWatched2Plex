@@ -38,13 +38,13 @@ module IWatched2Plex
 					end
 
 
-				elsif section.type == "show" then
-					next
-					shows = section.all
+				# elsif section.type == "show" then
+				# 	next
+				# 	shows = section.all
 
 
-					dex = shows.detect { |s| s.title =~ /Dexter/ }
-					library.unwatched(dex.last_episode)
+				# 	dex = shows.detect { |s| s.title =~ /Dexter/ }
+				# 	library.unwatched(dex.last_episode)
 				end
 
 

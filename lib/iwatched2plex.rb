@@ -9,7 +9,7 @@ module IWatched2Plex
     LIBRARY_PATH = File.join(File.dirname(__FILE__), "iwatched2plex")
 
 	autoload :Version,		File.join(LIBRARY_PATH, "version")
-	autoload :Itunes, 		File.join(LIBRARY_PATH, "itunes")
-	autoload :AJPlex, 		File.join(LIBRARY_PATH, "plex")
+	autoload :AJiTunes,		File.join(LIBRARY_PATH, "ajitunes")
+	autoload :AJPlex, 		File.join(LIBRARY_PATH, "ajplex")
 
 end

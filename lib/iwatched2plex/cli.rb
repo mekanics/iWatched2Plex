@@ -19,11 +19,11 @@ module IWatched2Plex
 
 			puts "#{itunes_lib_path} --> #{plex_host}:#{plex_port}".yellow
 
-			itunesLib = Itunes.new(itunes_lib_path)
+			itunesLib = AJiTunes.new(itunes_lib_path)
 
 			movies = itunesLib.getWatchedMovies
 			movie_names = movies.map {|movie| movie.name}
-			movie_names.sort_by!{ |m| m.downcase }
+			movie_names.sort_by!{ |m| m.downcase }.uniq!
 
 
 			plex = AJPlex.new(plex_host, plex_port)

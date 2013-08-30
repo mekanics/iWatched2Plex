@@ -10,7 +10,7 @@ end
 
 module IWatched2Plex
 
-	class Itunes
+	class AJiTunes
 
 		def initialize(itunesLibPath)
 

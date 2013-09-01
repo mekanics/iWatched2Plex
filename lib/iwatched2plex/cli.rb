@@ -22,12 +22,12 @@ module IWatched2Plex
 			itunesLib = AJiTunes.new(itunes_lib_path)
 
 			movies = itunesLib.getWatchedMovies
-			movie_names = movies.map {|movie| movie.name}
-			movie_names.sort_by!{ |m| m.downcase }.uniq!
-
 
 			plex = AJPlex.new(plex_host, plex_port)
-			plex.setMoviesUnwatched(movie_names)
+			plex.set_movies_unwatched(movies)
+
+			shows = itunesLib.getWatchedShows
+			plex.set_shows_unwatched(shows)
 		end
 
 		map "-v" => :version

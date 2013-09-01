@@ -42,11 +42,15 @@ module IWatched2Plex
 
 			case type
 				when VideoType::MOVIE
-					list = @library.movies.tracks.select { |t| t.played? }
-
+					movies = @library.movies.tracks.select { |t| t.played? }
+					movies.each do |movie|
+						list.push(AJMovie.new(movie.name))
+					end
 				when VideoType::TVSHOW
-					list = @library.tv_shows.tracks.select { |t| t.played? }
-
+					shows = @library.tv_shows.tracks.select { |t| t.played? }
+					shows.each do |show|
+						list.push(AJShow.new(show.name, show["Series"], show["Season"], show["Track Number"]))
+					end
 			end
 
 			list

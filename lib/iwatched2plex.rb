@@ -11,5 +11,8 @@ module IWatched2Plex
 	autoload :Version,		File.join(LIBRARY_PATH, "version")
 	autoload :AJiTunes,		File.join(LIBRARY_PATH, "ajitunes")
 	autoload :AJPlex, 		File.join(LIBRARY_PATH, "ajplex")
+	autoload :AJVideo,		File.join(LIBRARY_PATH, "ajvideo")
+	autoload :AJMovie,		File.join(LIBRARY_PATH, "ajmovie")
+	autoload :AJShow,		File.join(LIBRARY_PATH, "ajshow")
 
 end
